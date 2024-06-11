@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <h1>Ajouter une category</h1>
+{{form_start(cateForm)}}
+
+    {{form_widget(cateForm)}}
+<button type="submit" class="btn btn-primary">Valider</button>
+{{form_end(cateForm)}}
+<br> <br><br><br>
+    <form action="{{ path("app_main") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <h1>Modifier User</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{form_start(userForm)}}
+
+    {{form_widget(userForm)}}
+    <button type="submit" class="btn btn-primary mb-3">Editer</button>
+    {{form_end(userForm)}}
+    <br> <br><br><br>
+    <form  action="{{ path("app_main") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}

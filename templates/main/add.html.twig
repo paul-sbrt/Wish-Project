@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Ajouter un Wish</h1>
+{{form_start(wishForm)}}
+
+    {{form_widget(wishForm)}}
+<button type="submit" class="btn btn-primary">Valider</button>
+{{form_end(wishForm)}}
+<br> <br><br><br>
+    <form action="{{ path("app_main") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}

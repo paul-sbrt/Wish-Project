@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+    {% if is_granted("ROLE_USER") %}
+
+        <h1 class="text-center"> Hello {{app.user.username}} </h1>
+
+    {% endif %}
+    <h1 class="my-4">Liste de chose a faire :</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class=" ms-2 alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Statu</th>
+        <th>Author</th>
+        <th>Created at</th>
+        <th colspan="2" class="text-center">Actions</th>
+    </tr>
+    </thead>
+   <tbody>
+    {% for w in wishes %}
+
+    <tr>
+        <th class="fs-4 text" ><a href="{{ path("main_detail", {id: w.id}) }}">{{ w.title }}</a></th>
+        <th>{{ w.descriptiuon }}</th>
+        <th>{{ w.category.name }}</th>
+        <th>{{ w.author }}</th>
+        <th>{{ w.dateCreated|date ('d/m/y')}}</th>
+        <th> <a href="{{ path("main_edit", {id: w.id}) }}" class="btn btn-primary">Modifier</a></th>
+        <th> <a href="{{ path("main_delete", {id: w.id}) }}" class="btn btn-danger">Supprimer</a></th>
+    </tr>
+   </tbody>
+    {% endfor %}
+</table>
+
+
+
+    <form action="{{ path("main_add") }}" class=" d-flex justify-content-center align-items-center">
+        <input  class="btn btn-success d-flex " type="submit" value="Ajouter Wish" />
+    </form>
+
+{% endblock %}

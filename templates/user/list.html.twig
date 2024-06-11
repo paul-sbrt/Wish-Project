@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h1 class="my-4">Liste des users :</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class=" ms-2 alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>NickName</th>
+            <th>email</th>
+            <th>Role</th>
+            <th colspan="2" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for u in user %}
+
+        <tr>
+            <th>{{ u.name }}</th>
+            <th>{{ u.lastname }}</th>
+            <th>{{ u.username }}</th>
+            <th>{{ u.email }}</th>
+            <th>{{ u.roles|join (' & ')| replace({"_" : " "}) }}</th>
+
+            <th> <a href="{{ path("edit_user", {id: u.id}) }}" class="btn btn-primary">Modifier</a></th>
+            <th> <a href="{{ path("delete_user", {id: u.id}) }}"class="btn btn-danger">Supprimer</a></th>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <form action="{{ path("add_user")}}" class=" d-flex justify-content-center align-items-center">
+        <input  class="btn btn-success d-flex " type="submit" value="Ajouter User" />
+    </form>
+
+
+{% endblock %}

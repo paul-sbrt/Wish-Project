@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>liste categories</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class=" ms-2 alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+    <table class="table table-striped ">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th colspan="2" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in category %}
+
+        <tr>
+            <th>{{ c.name }}</th>
+            <th> <a href="{{ path("category_edit", {id: c.id}) }}" class="btn btn-primary">Modifier</a></th>
+            <th><a href="{{ path("category_delete", {id: c.id}) }}" class="btn btn-danger">Supprimer</a></th>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+    </div>
+    </div>
+
+
+    <form action="{{ path("main_addCat") }}" class=" d-flex justify-content-center align-items-center">
+        <input  class="btn btn-success d-flex " type="submit" value="Ajouter category" />
+    </form>
+{% endblock %}

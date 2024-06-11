@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ user.Name }} {{ user.Lastname }}</h1>
+    <p>{{ user.username }}</p>
+    <p>{{ user.email }}</p>
+
+
+    <form action={% if is_granted('ROLE_ADMIN') %}
+   "{{ path('edit_user', {'id': app.user.id}) }}"
+{% else %}
+    "{{ path('edit_user_normal', {'id': app.user.id}) }}"
+{% endif %}>
+        <input class="btn btn-primary" type="submit" value="Modifier" />
+    </form>
+
+    <form action="{{ path("app_main") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}

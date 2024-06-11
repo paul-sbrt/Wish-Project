@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_errors(addForm) }}
+
+    {{ form_start(addForm) }}
+    {{ form_widget(addForm) }}
+
+
+    <button  type="submit" class="btn btn-primary">Ajouter</button>
+    {{ form_end(addForm) }}
+    <form  action="{{ path("main_user") }}">
+        <input class="btn btn-info mt-2"type="submit" value="retour" />
+    </form>
+{% endblock %}

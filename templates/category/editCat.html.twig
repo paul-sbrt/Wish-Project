@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <h1>Modifier un Wish</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{form_start(categoryForm)}}
+
+    {{form_widget(categoryForm)}}
+<button type="submit" class="btn btn-primary">Editer</button>
+{{form_end(categoryForm)}}
+<br> <br><br><br>
+    <form  action="{{ path("app_category") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}

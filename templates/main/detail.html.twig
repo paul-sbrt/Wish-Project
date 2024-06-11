@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ wish.title }}</h1>
+    <p>{{ wish.descriptiuon }}</p>
+    <p>{{ wish.author }}</p>
+    <p>{{ wish.isPublished}}</p>
+    <th>{{ wish.category.name }}</th>
+    <p>{{ wish.dateCreated|date ("d/m/y") }}</p>
+
+    <form action="{{ path("app_main") }}">
+        <input class="btn btn-info"type="submit" value="retour" />
+    </form>
+{% endblock %}
